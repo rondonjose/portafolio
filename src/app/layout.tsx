@@ -2,6 +2,7 @@ import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
+import Script from 'next/script';
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
@@ -48,26 +49,26 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     >
       <head>
         <link rel="icon" href="/images/og/Portada.png" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme') || 'system';
-                  const root = document.documentElement;
-                  if (theme === 'system') {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                  } else {
-                    root.setAttribute('data-theme', theme);
-                  }
-                } catch (e) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              })();
-            `,
-          }}
-        />
+        <Script id="facebook-pixel" strategy="beforeInteractive">
+          {`!function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '2003807796695683');
+          fbq('track', 'PageView');`}
+        </Script>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2003807796695683&ev=PageView&noscript=1"
+          />
+        </noscript>
       </head>
       <ThemeProvider>
         <ToastProvider>
