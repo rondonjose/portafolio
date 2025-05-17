@@ -3,6 +3,7 @@ import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
 import Script from 'next/script';
+import Image from 'next/image';
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
@@ -62,11 +63,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           fbq('track', 'PageView');`}
         </Script>
         <noscript>
-          <img
-            height="1"
-            width="1"
+          <Image
+            height={1}
+            width={1}
             style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=2003807796695683&ev=PageView&noscript=1"
+            alt="Facebook Pixel"
           />
         </noscript>
       </head>
