@@ -18,3 +18,9 @@ export {
   work,
   gallery,
 } from "@/app/resources/content";
+
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+  }
+}
